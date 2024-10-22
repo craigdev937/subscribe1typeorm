@@ -1,6 +1,5 @@
 import express from "express";
 import { PhoneModel } from "../models/PhoneMod";
-import { PhoneSub } from "../subscribers/PhoneSub";
 
 class PhoneClass {
     Create: express.Handler = async (req, res, next) => {
