@@ -1,8 +1,9 @@
 import express from "express";
-import { IndexHome } from "../controllers/PhoneCon";
+import { PHONE } from "../controllers/PhoneCon";
 
 export const phoneRt: express.Router = express.Router();
-    phoneRt.get("/", IndexHome);
+    phoneRt.post("/", PHONE.Create);
+    phoneRt.get("/", PHONE.FetchAll);
 
 
 

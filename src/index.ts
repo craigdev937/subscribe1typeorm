@@ -5,8 +5,12 @@ import helmet from "helmet";
 import logger from "morgan";
 import { ERR } from "./middleware/MidError";
 import { phoneRt } from "./routes/PhoneRt";
+import { dBase } from "./data/database";
 
 (async () => {
+    await dBase.initialize()
+    .then(() => console.log("PostgreSQL is now Connected!"))
+    .catch((err) => console.error(err))
     const app: express.Application = express();
     app.use(helmet());
 
@@ -29,6 +33,7 @@ import { phoneRt } from "./routes/PhoneRt";
     app.use("/api/phones", phoneRt);
     app.use(ERR.notFound);
     app.use(ERR.errHandler);
+    
     const port = process.env.PORT;
     app.listen(port, () => {
         console.log(`Server: http://localhost:${port}`);
